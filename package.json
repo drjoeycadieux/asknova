@@ -1,7 +1,7 @@
 {
-  "name": "asknova-search-engine",
+  "name": "asknova-developer-hub",
   "version": "1.0.2",
-  "description": "AskNova - A modern, feature-rich search engine with advanced filtering, analytics, and user experience",
+  "description": "AskNova Developer Hub - A comprehensive programming resource center with tutorials, tools, and educational content for developers of all skill levels",
   "main": "index.html",
   "scripts": {
     "start": "serve",
@@ -10,34 +10,51 @@
     "test": "echo 'No tests specified'"
   },
   "keywords": [
-    "search-engine",
-    "web-search",
-    "javascript",
-    "html",
-    "css",
-    "modern-ui",
-    "voice-search",
-    "analytics",
-    "favorites",
-    "filters"
+    "programming-tutorials",
+    "developer-tools",
+    "web-development",
+    "javascript-tutorials",
+    "python-tutorials",
+    "css-tutorials",
+    "coding-education",
+    "developer-resources",
+    "programming-guides",
+    "technical-blog",
+    "code-examples",
+    "web-tutorials"
   ],
-  "author": "AskNova Team",
+  "author": "AskNova Developer Hub Team",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/drjoeycadieux/asknova.git"
+  },
+  "homepage": "https://asknova.xyz",
   "devDependencies": {
     "serve": "^11.2.0"
   },
   "features": [
-    "Advanced search with 100+ curated results",
-    "Smart filtering by category, type, date, and rating",
-    "Multiple search modes (Web, Images, Videos, News)",
-    "Voice search integration",
-    "Search analytics and history",
-    "Favorites management",
-    "Dark/Light mode toggle",
-    "Keyboard navigation",
-    "Real-time search suggestions",
-    "Result previews and sharing",
-    "Export functionality",
-    "Responsive design"
+    "Original programming tutorials with step-by-step guides",
+    "Interactive developer tools (JSON formatter, regex tester, etc.)",
+    "Technical blog with industry insights and best practices",
+    "Comprehensive code examples and snippets",
+    "Resource guides and learning paths",
+    "Search functionality across all educational content",
+    "Dark/Light mode toggle for better user experience",
+    "Mobile-responsive design",
+    "Accessibility features and keyboard navigation",
+    "Privacy-compliant with GDPR considerations"
+  ],
+  "content-categories": [
+    "JavaScript Programming",
+    "Python Development", 
+    "CSS and Web Design",
+    "React and Frontend Frameworks",
+    "Node.js and Backend Development",
+    "Developer Tools and Utilities",
+    "Web Performance Optimization",
+    "Accessibility and Inclusive Design",
+    "API Development and Best Practices",
+    "Version Control and Git Workflows"
   ]
 }

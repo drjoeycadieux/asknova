@@ -109,105 +109,12 @@ body.dark-mode {
   cursor: pointer;
   color: #667eea;
   transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .dark-mode-toggle:hover {
   background: #667eea;
   color: white;
   transform: rotate(180deg);
-}
-
-.dark-mode .dark-mode-toggle {
-  border-color: #8fa2ff;
-  color: #8fa2ff;
-}
-
-.dark-mode .dark-mode-toggle:hover {
-  background: #8fa2ff;
-  color: #333;
-}
-
-/* General Button Styles */
-button {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 25px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-  margin: 0.25rem;
-  font-family: inherit;
-}
-
-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-  background: linear-gradient(135deg, #764ba2, #667eea);
-}
-
-button:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
-}
-
-button:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
-}
-
-.dark-mode button {
-  background: linear-gradient(135deg, #8fa2ff, #9c88ff);
-  box-shadow: 0 4px 15px rgba(143, 162, 255, 0.3);
-}
-
-.dark-mode button:hover {
-  background: linear-gradient(135deg, #9c88ff, #8fa2ff);
-  box-shadow: 0 8px 25px rgba(143, 162, 255, 0.4);
-}
-
-/* Button Styles */
-.button_id, .search_button {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 25px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-  margin: 0.5rem;
-  text-decoration: none;
-  display: inline-block;
-  text-align: center;
-}
-
-.button_id:hover, .search_button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-  background: linear-gradient(135deg, #764ba2, #667eea);
-}
-
-.button_id:active, .search_button:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
-}
-
-.centered_button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  margin: 2rem 0;
-  flex-wrap: wrap;
 }
 
 /* Main Content Areas */
@@ -259,8 +166,7 @@ button:focus {
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
 }
 
-/* Search form specific styles */
-.search-form .search_button {
+.search_button {
   background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;
   border: none;
@@ -274,7 +180,7 @@ button:focus {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.search-form .search_button:hover {
+.search_button:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
@@ -345,22 +251,19 @@ button:focus {
 }
 
 .featured-card button {
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: #667eea;
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 25px;
-  font-weight: 600;
   cursor: pointer;
+  font-weight: 500;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-  width: 100%;
 }
 
 .featured-card button:hover {
+  background: #5a6fd8;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-  background: linear-gradient(135deg, #764ba2, #667eea);
 }
 
 /* Quick Tools */
@@ -393,21 +296,17 @@ button:focus {
   background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;
   border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 25px;
-  font-weight: 600;
+  padding: 1rem 1.5rem;
+  border-radius: 15px;
   cursor: pointer;
+  font-weight: 500;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-  margin: 0.5rem;
-  text-decoration: none;
-  display: inline-block;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .tool-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-  background: linear-gradient(135deg, #764ba2, #667eea);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
 /* Content Pages */
@@ -1207,21 +1106,10 @@ mark {
     padding: 1rem;
   }
   
-  .search_button, .button_id {
+  .search_button {
     margin-left: 0;
     margin-top: 1rem;
     width: 100%;
-    padding: 1rem 2rem;
-  }
-  
-  .centered_button {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  
-  .tool-button {
-    width: 100%;
-    margin: 0.25rem 0;
   }
 }
 
