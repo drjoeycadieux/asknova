@@ -19,6 +19,8 @@
         <li><a href="#" onclick="showHome()">Home</a></li>
         <li><a href="#" onclick="showAbout()">About</a></li>
         <li><a href="#" onclick="showDocs()">Documentation</a></li>
+        <li><a href="#" onclick="showFavorites()">Favorites</a></li>
+        <li><a href="#" onclick="showAnalytics()">Analytics</a></li>
         <li>
           <input
             class="input_model"
@@ -28,6 +30,11 @@
             placeholder="Search Docs"
             onkeypress="handleDocSearch(event)"
           />
+        </li>
+        <li>
+          <button class="dark-mode-toggle" onclick="toggleDarkMode()" title="Toggle dark mode">
+            <i class="bi bi-moon"></i>
+          </button>
         </li>
       </ul>
     </div>
@@ -88,12 +95,52 @@
         <div id="docs-content">
           <h3>How to Use AskNova</h3>
           <p>Simply enter your search query and click Search or press Enter.</p>
+          
+          <h3>Advanced Search Features</h3>
+          <ul>
+            <li><strong>Voice Search:</strong> Click the microphone icon to search by voice</li>
+            <li><strong>Search Filters:</strong> Filter results by category, type, date, and rating</li>
+            <li><strong>Search Modes:</strong> Switch between Web, Images, Videos, and News search</li>
+            <li><strong>Keyboard Navigation:</strong> Use arrow keys to navigate results, Enter to open</li>
+            <li><strong>Favorites:</strong> Save important results for later reference</li>
+          </ul>
+          
           <h3>Search Tips</h3>
           <ul>
             <li>Use specific keywords for better results</li>
             <li>Try different combinations of words</li>
             <li>Use quotes for exact phrases</li>
+            <li>Filter by category to narrow down results</li>
+            <li>Sort results by date, rating, or relevance</li>
           </ul>
+          
+          <h3>Keyboard Shortcuts</h3>
+          <ul>
+            <li><strong>Ctrl/Cmd + K:</strong> Focus search box</li>
+            <li><strong>Escape:</strong> Return to home page</li>
+            <li><strong>Arrow Keys:</strong> Navigate search results</li>
+            <li><strong>Enter:</strong> Open selected result</li>
+          </ul>
+        </div>
+        <button class="button_id" onclick="showHome()">Back to Search</button>
+      </div>
+    </div>
+
+    <div id="favorites-view" class="view" style="display: none;">
+      <div class="content-container">
+        <h2>Your Favorites</h2>
+        <div id="favorites-content">
+          <p>Loading your saved favorites...</p>
+        </div>
+        <button class="button_id" onclick="showHome()">Back to Search</button>
+      </div>
+    </div>
+
+    <div id="analytics-view" class="view" style="display: none;">
+      <div class="content-container">
+        <h2>Search Analytics</h2>
+        <div id="analytics-content">
+          <p>Loading your search analytics...</p>
         </div>
         <button class="button_id" onclick="showHome()">Back to Search</button>
       </div>

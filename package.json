@@ -1,18 +1,43 @@
 {
-  "name": "html-css",
-  "version": "1.0.0",
-  "description": "A template for HTML and CSS",
+  "name": "asknova-search-engine",
+  "version": "1.0.2",
+  "description": "AskNova - A modern, feature-rich search engine with advanced filtering, analytics, and user experience",
   "main": "index.html",
   "scripts": {
-    "start": "serve"
+    "start": "serve",
+    "dev": "serve -s .",
+    "build": "echo 'Static site - no build needed'",
+    "test": "echo 'No tests specified'"
   },
   "keywords": [
+    "search-engine",
+    "web-search",
+    "javascript",
     "html",
-    "css"
+    "css",
+    "modern-ui",
+    "voice-search",
+    "analytics",
+    "favorites",
+    "filters"
   ],
-  "author": "Ives van Hoorne",
+  "author": "AskNova Team",
   "license": "MIT",
   "devDependencies": {
     "serve": "^11.2.0"
-  }
+  },
+  "features": [
+    "Advanced search with 100+ curated results",
+    "Smart filtering by category, type, date, and rating",
+    "Multiple search modes (Web, Images, Videos, News)",
+    "Voice search integration",
+    "Search analytics and history",
+    "Favorites management",
+    "Dark/Light mode toggle",
+    "Keyboard navigation",
+    "Real-time search suggestions",
+    "Result previews and sharing",
+    "Export functionality",
+    "Responsive design"
+  ]
 }
