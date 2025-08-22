@@ -97,12 +97,31 @@ function executeSearch(query) {
   // Show loading
   showLoading();
   
-  // Simulate API delay
+  // Add to search history
+  addToSearchHistory(query);
+  
+  // Simulate API delay with more realistic timing
+  const delay = Math.random() * 800 + 300; // 300-1100ms delay
+  
   setTimeout(() => {
-    currentResults = searchMockData(query);
-    currentPage = 1;
-    displayResults(query);
-  }, 500);
+    try {
+      currentResults = searchMockData(query);
+      currentPage = 1;
+      
+      // Track search analytics
+      trackSearchEvent(query, currentResults.length);
+      
+      displayResults(query);
+      
+      // Show success message if results found
+      if (currentResults.length > 0) {
+        showSuccessMessage(`Found ${currentResults.length} results for "${query}"`);
+      }
+    } catch (error) {
+      showErrorMessage('An error occurred while searching. Please try again.');
+      console.error('Search error:', error);
+    }
+  }, delay);
 }
 
 function searchMockData(query) {
@@ -318,29 +337,291 @@ document.addEventListener('DOMContentLoaded', function() {
       performSearch(event);
     }
   });
+  
+  // Add smooth transitions for better UX
+  addPageTransitions();
+  
+  // Add search suggestions
+  addSearchSuggestions();
+  
+  // Add keyboard shortcuts
+  addKeyboardShortcuts();
 });
+
+// Add smooth page transitions
+function addPageTransitions() {
+  const views = document.querySelectorAll('.view');
+  views.forEach(view => {
+    view.style.transition = 'all 0.3s ease-in-out';
+  });
+}
+
+// Add search suggestions functionality
+function addSearchSuggestions() {
+  const searchInput = document.getElementById('search_terms');
+  const suggestionsContainer = document.createElement('div');
+  suggestionsContainer.className = 'search-suggestions';
+  suggestionsContainer.style.cssText = `
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: none;
+    max-height: 300px;
+    overflow-y: auto;
+  `;
+  
+  // Create a wrapper for positioning
+  const wrapper = document.createElement('div');
+  wrapper.style.position = 'relative';
+  wrapper.style.display = 'inline-block';
+  
+  searchInput.parentNode.insertBefore(wrapper, searchInput);
+  wrapper.appendChild(searchInput);
+  wrapper.appendChild(suggestionsContainer);
+  
+  let debounceTimer;
+  searchInput.addEventListener('input', function() {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+      const query = this.value.trim();
+      if (query.length > 1) {
+        showSuggestions(query, suggestionsContainer);
+      } else {
+        suggestionsContainer.style.display = 'none';
+      }
+    }, 300);
+  });
+  
+  // Hide suggestions when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!wrapper.contains(e.target)) {
+      suggestionsContainer.style.display = 'none';
+    }
+  });
+}
+
+// Show search suggestions
+function showSuggestions(query, container) {
+  const suggestions = getSearchSuggestions(query);
+  
+  if (suggestions.length === 0) {
+    container.style.display = 'none';
+    return;
+  }
+  
+  container.innerHTML = suggestions.map(suggestion => `
+    <div class="suggestion-item" style="
+      padding: 12px 20px;
+      cursor: pointer;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      transition: background-color 0.2s ease;
+      font-family: 'Inter', sans-serif;
+      color: #4a5568;
+    " onmouseover="this.style.backgroundColor='rgba(102, 126, 234, 0.1)'"
+       onmouseout="this.style.backgroundColor='transparent'"
+       onclick="selectSuggestion('${suggestion.replace(/'/g, "\\'")}')">
+      ${suggestion}
+    </div>
+  `).join('');
+  
+  container.style.display = 'block';
+}
+
+// Select a suggestion
+function selectSuggestion(suggestion) {
+  document.getElementById('search_terms').value = suggestion;
+  document.querySelector('.search-suggestions').style.display = 'none';
+  executeSearch(suggestion);
+}
+
+// Add keyboard shortcuts
+function addKeyboardShortcuts() {
+  document.addEventListener('keydown', function(e) {
+    // Ctrl/Cmd + K to focus search
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      e.preventDefault();
+      const currentView = getCurrentView();
+      if (currentView === 'home-view') {
+        document.getElementById('search_terms').focus();
+      } else if (currentView === 'results-view') {
+        document.getElementById('results-search-input').focus();
+      }
+    }
+    
+    // Escape to go back to home
+    if (e.key === 'Escape') {
+      showHome();
+    }
+  });
+}
+
+// Get current active view
+function getCurrentView() {
+  const views = document.querySelectorAll('.view');
+  for (let view of views) {
+    if (view.style.display !== 'none') {
+      return view.id;
+    }
+  }
+  return 'home-view';
+}
 
 // Add some utility functions for potential future features
 function getSearchSuggestions(query) {
-  // This could be expanded to provide search suggestions
-  const suggestions = mockSearchData
-    .filter(item => item.title.toLowerCase().includes(query.toLowerCase()))
-    .map(item => item.title)
-    .slice(0, 5);
+  // Enhanced search suggestions with better matching
+  const lowercaseQuery = query.toLowerCase();
+  const suggestions = new Set();
   
-  return suggestions;
+  // Add exact matches first
+  mockSearchData.forEach(item => {
+    const title = item.title.toLowerCase();
+    if (title.includes(lowercaseQuery)) {
+      suggestions.add(item.title);
+    }
+  });
+  
+  // Add keyword suggestions
+  const keywords = ['javascript', 'html', 'css', 'python', 'react', 'node.js', 'git', 'github', 'programming', 'tutorial', 'documentation', 'web development', 'frontend', 'backend'];
+  keywords.forEach(keyword => {
+    if (keyword.toLowerCase().includes(lowercaseQuery) && suggestions.size < 8) {
+      suggestions.add(keyword);
+    }
+  });
+  
+  return Array.from(suggestions).slice(0, 6);
 }
 
 function addToSearchHistory(query) {
-  // This could be expanded to store search history in localStorage
+  // Enhanced search history with timestamps
   let history = JSON.parse(localStorage.getItem('searchHistory') || '[]');
-  if (!history.includes(query)) {
-    history.unshift(query);
-    history = history.slice(0, 10); // Keep only last 10 searches
-    localStorage.setItem('searchHistory', JSON.stringify(history));
-  }
+  
+  // Remove existing entry if it exists
+  history = history.filter(item => item.query !== query);
+  
+  // Add new entry at the beginning
+  history.unshift({
+    query: query,
+    timestamp: new Date().toISOString(),
+    count: 1
+  });
+  
+  // Keep only last 20 searches
+  history = history.slice(0, 20);
+  localStorage.setItem('searchHistory', JSON.stringify(history));
 }
 
 function getSearchHistory() {
   return JSON.parse(localStorage.getItem('searchHistory') || '[]');
+}
+
+// Add search analytics
+function trackSearchEvent(query, resultCount) {
+  const analytics = JSON.parse(localStorage.getItem('searchAnalytics') || '{}');
+  
+  if (!analytics[query]) {
+    analytics[query] = {
+      count: 0,
+      firstSearched: new Date().toISOString(),
+      lastSearched: new Date().toISOString(),
+      totalResults: 0
+    };
+  }
+  
+  analytics[query].count++;
+  analytics[query].lastSearched = new Date().toISOString();
+  analytics[query].totalResults = resultCount;
+  
+  localStorage.setItem('searchAnalytics', JSON.stringify(analytics));
+}
+
+// Enhanced error handling
+function showErrorMessage(message) {
+  const errorContainer = document.createElement('div');
+  errorContainer.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #fc8181, #f56565);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(245, 101, 101, 0.3);
+    z-index: 10000;
+    font-family: 'Inter', sans-serif;
+    animation: slideInRight 0.3s ease-out;
+  `;
+  
+  errorContainer.innerHTML = `
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <span>⚠️</span>
+      <span>${message}</span>
+      <button onclick="this.parentElement.parentElement.remove()" style="
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+        font-size: 18px;
+        padding: 0;
+        margin-left: 10px;
+      ">×</button>
+    </div>
+  `;
+  
+  document.body.appendChild(errorContainer);
+  
+  // Auto remove after 5 seconds
+  setTimeout(() => {
+    if (errorContainer.parentNode) {
+      errorContainer.remove();
+    }
+  }, 5000);
+}
+
+// Add success notification
+function showSuccessMessage(message) {
+  const successContainer = document.createElement('div');
+  successContainer.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #68d391, #48bb78);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(72, 187, 120, 0.3);
+    z-index: 10000;
+    font-family: 'Inter', sans-serif;
+    animation: slideInRight 0.3s ease-out;
+  `;
+  
+  successContainer.innerHTML = `
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <span>✅</span>
+      <span>${message}</span>
+      <button onclick="this.parentElement.parentElement.remove()" style="
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+        font-size: 18px;
+        padding: 0;
+        margin-left: 10px;
+      ">×</button>
+    </div>
+  `;
+  
+  document.body.appendChild(successContainer);
+  
+  // Auto remove after 3 seconds
+  setTimeout(() => {
+    if (successContainer.parentNode) {
+      successContainer.remove();
+    }
+  }, 3000);
 }
