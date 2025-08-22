@@ -1,18 +1,60 @@
 {
-  "name": "html-css",
-  "version": "1.0.0",
-  "description": "A template for HTML and CSS",
+  "name": "asknova-developer-hub",
+  "version": "1.0.2",
+  "description": "AskNova Developer Hub - A comprehensive programming resource center with tutorials, tools, and educational content for developers of all skill levels",
   "main": "index.html",
   "scripts": {
-    "start": "serve"
+    "start": "serve",
+    "dev": "serve -s .",
+    "build": "echo 'Static site - no build needed'",
+    "test": "echo 'No tests specified'"
   },
   "keywords": [
-    "html",
-    "css"
+    "programming-tutorials",
+    "developer-tools",
+    "web-development",
+    "javascript-tutorials",
+    "python-tutorials",
+    "css-tutorials",
+    "coding-education",
+    "developer-resources",
+    "programming-guides",
+    "technical-blog",
+    "code-examples",
+    "web-tutorials"
   ],
-  "author": "Ives van Hoorne",
+  "author": "AskNova Developer Hub Team",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/drjoeycadieux/asknova.git"
+  },
+  "homepage": "https://asknova.xyz",
   "devDependencies": {
     "serve": "^11.2.0"
-  }
+  },
+  "features": [
+    "Original programming tutorials with step-by-step guides",
+    "Interactive developer tools (JSON formatter, regex tester, etc.)",
+    "Technical blog with industry insights and best practices",
+    "Comprehensive code examples and snippets",
+    "Resource guides and learning paths",
+    "Search functionality across all educational content",
+    "Dark/Light mode toggle for better user experience",
+    "Mobile-responsive design",
+    "Accessibility features and keyboard navigation",
+    "Privacy-compliant with GDPR considerations"
+  ],
+  "content-categories": [
+    "JavaScript Programming",
+    "Python Development", 
+    "CSS and Web Design",
+    "React and Frontend Frameworks",
+    "Node.js and Backend Development",
+    "Developer Tools and Utilities",
+    "Web Performance Optimization",
+    "Accessibility and Inclusive Design",
+    "API Development and Best Practices",
+    "Version Control and Git Workflows"
+  ]
 }

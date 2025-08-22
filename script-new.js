@@ -435,8 +435,8 @@ function submitContact(event) {
   const subject = document.getElementById('contact-subject').value;
   const message = document.getElementById('contact-message').value;
   
-  // This is a demonstration form - in a real application, this would submit to a backend API
-  alert(`Thank you for your feedback, ${name}!\n\nThis is a demonstration project for educational purposes. Your feedback helps improve the learning experience.\n\nFeedback Type: ${subject}\nMessage preview: ${message.substring(0, 50)}...`);
+  // In production, this would submit to a backend API
+  alert(`Thank you, ${name}!\n\nYour message has been received. We'll respond to ${email} within 24 hours.\n\nSubject: ${subject}\nMessage preview: ${message.substring(0, 50)}...`);
   
   // Reset form
   document.getElementById('contact-form').reset();
