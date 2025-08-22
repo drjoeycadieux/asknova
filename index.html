@@ -16,36 +16,89 @@
             AskNova <span><i class="bi bi-search"></i></span>
           </p>
         </li>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Documentation</a></li>
+        <li><a href="#" onclick="showHome()">Home</a></li>
+        <li><a href="#" onclick="showAbout()">About</a></li>
+        <li><a href="#" onclick="showDocs()">Documentation</a></li>
         <li>
           <input
             class="input_model"
             type="search"
-            name="search_id"
-            id="search_id"
+            name="doc_search"
+            id="doc_search"
             placeholder="Search Docs"
+            onkeypress="handleDocSearch(event)"
           />
         </li>
       </ul>
     </div>
 
-    <div class="search_id_engine">
-      <p>AskNova</p>
-      <center>
-        <input type="search_id" name="search_terms" id=search_terms"
-        placeholder="Search Anything ...">
-      </center>
+    <div id="home-view" class="view">
+      <div class="search_id_engine">
+        <p>AskNova</p>
+        <center>
+          <form id="search-form" onsubmit="performSearch(event)">
+            <input 
+              type="search" 
+              name="search_terms" 
+              id="search_terms"
+              placeholder="Search Anything ..."
+              autocomplete="off"
+            />
+          </form>
+        </center>
+      </div>
+
+      <br />
+
+      <div class="centered_button">
+        <center>
+          <button class="button_id" type="submit" form="search-form">Search</button>
+          <button class="button_id" type="button" onclick="feelingLucky()">I'm Feeling Lucky</button>
+        </center>
+      </div>
     </div>
 
-    <br />
-
-    <div class="centered_button">
-      <center>
-        <button class="button_id" type="submit">Search</button>
-        <button class="button_id" type="submit">Feel Lucky</button>
-      </center>
+    <div id="results-view" class="view" style="display: none;">
+      <div class="results-header">
+        <div class="results-search-bar">
+          <input 
+            type="search" 
+            id="results-search-input"
+            placeholder="Search..."
+            onkeypress="handleResultsSearch(event)"
+          />
+          <button onclick="performResultsSearch()">Search</button>
+        </div>
+      </div>
+      <div id="search-results" class="search-results"></div>
+      <div id="pagination" class="pagination"></div>
     </div>
+
+    <div id="about-view" class="view" style="display: none;">
+      <div class="content-container">
+        <h2>About AskNova</h2>
+        <p>AskNova is a modern search engine that helps you find information quickly and efficiently.</p>
+        <button class="button_id" onclick="showHome()">Back to Search</button>
+      </div>
+    </div>
+
+    <div id="docs-view" class="view" style="display: none;">
+      <div class="content-container">
+        <h2>Documentation</h2>
+        <div id="docs-content">
+          <h3>How to Use AskNova</h3>
+          <p>Simply enter your search query and click Search or press Enter.</p>
+          <h3>Search Tips</h3>
+          <ul>
+            <li>Use specific keywords for better results</li>
+            <li>Try different combinations of words</li>
+            <li>Use quotes for exact phrases</li>
+          </ul>
+        </div>
+        <button class="button_id" onclick="showHome()">Back to Search</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
   </body>
 </html>
