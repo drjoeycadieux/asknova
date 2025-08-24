@@ -1,13 +1,14 @@
 {
   "name": "asknova-developer-hub",
-  "version": "1.0.2",
-  "description": "AskNova Developer Hub - A comprehensive programming resource center with tutorials, tools, and educational content for developers of all skill levels",
+  "version": "1.1.0",
+  "description": "AskNova Developer Hub - A comprehensive programming resource center with tutorials, tools, and educational content for developers of all skill levels. SEO optimized for maximum traffic and discoverability.",
   "main": "index.html",
   "scripts": {
     "start": "serve",
     "dev": "serve -s .",
     "build": "echo 'Static site - no build needed'",
-    "test": "echo 'No tests specified'"
+    "test": "echo 'No tests specified'",
+    "seo-check": "echo 'Run lighthouse audit for SEO analysis'"
   },
   "keywords": [
     "programming-tutorials",
@@ -21,7 +22,12 @@
     "programming-guides",
     "technical-blog",
     "code-examples",
-    "web-tutorials"
+    "web-tutorials",
+    "seo-optimized",
+    "pwa",
+    "responsive-design",
+    "accessibility",
+    "performance-optimized"
   ],
   "author": "AskNova Developer Hub Team",
   "license": "MIT",
@@ -47,7 +53,7 @@
   ],
   "content-categories": [
     "JavaScript Programming",
-    "Python Development", 
+    "Python Development",
     "CSS and Web Design",
     "React and Frontend Frameworks",
     "Node.js and Backend Development",

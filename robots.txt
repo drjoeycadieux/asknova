@@ -1,0 +1,31 @@
+User-agent: *
+Allow: /
+
+# Main pages
+Allow: /index.html
+Allow: /sitemap.xml
+
+# CSS and JS files
+Allow: /styles.css
+Allow: /script.js
+Allow: /tutorials.js
+
+# Images and assets
+Allow: /images/
+Allow: /assets/
+
+# Block any potential development or test files
+Disallow: /test/
+Disallow: /dev/
+Disallow: /*.tmp
+Disallow: /*.bak
+Disallow: /script-old.js
+Disallow: /script-new.js
+Disallow: /styles-old.css
+Disallow: /styles-new.css
+
+# Sitemap location
+Sitemap: https://asknova.xyz/sitemap.xml
+
+# Crawl-delay to be respectful to search engines
+Crawl-delay: 1

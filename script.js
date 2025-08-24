@@ -1,5 +1,8 @@
-// AskNova Developer Hub - Original Educational Content Platform
-// Enhanced for Google AdSense approval with substantial original content
+// AskNova Developer Hub - Enhanced Performance & SEO Optimized
+// Original Educational Content Platform
+
+// Performance optimization: Lazy load heavy content
+let isContentLoaded = false;
 
 // Original programming resources and tutorials database
 const originalContent = [
@@ -14,14 +17,15 @@ const originalContent = [
     date: "2025-01-15",
     readTime: "45 min",
     author: "AskNova Team",
-    content: "comprehensive"
+    content: "comprehensive",
+    keywords: ["javascript", "ES2024", "async", "modules", "programming"]
   },
-  
+
   {
     title: "Python Performance Optimization Masterclass",
     url: "#tutorial/python-performance",
     description: "Master Python performance optimization with our in-depth guide covering profiling, caching, multiprocessing, and advanced techniques. Includes real-world examples and benchmarks to improve your Python applications.",
-    category: "tutorial", 
+    category: "tutorial",
     type: "original-content",
     rating: 4.8,
     date: "2025-01-12",
@@ -35,7 +39,7 @@ const originalContent = [
     url: "#tutorial/css-layout-mastery",
     description: "Create stunning responsive layouts with our comprehensive CSS Grid and Flexbox tutorial. Learn advanced techniques, browser support, and real-world layout patterns for modern web design.",
     category: "tutorial",
-    type: "original-content", 
+    type: "original-content",
     rating: 4.7,
     date: "2025-01-10",
     readTime: "30 min",
@@ -51,7 +55,7 @@ const originalContent = [
     type: "original-content",
     rating: 4.9,
     date: "2025-01-08",
-    readTime: "40 min", 
+    readTime: "40 min",
     author: "AskNova Team",
     content: "comprehensive"
   },
@@ -65,7 +69,7 @@ const originalContent = [
     rating: 4.8,
     date: "2025-01-05",
     readTime: "50 min",
-    author: "AskNova Team", 
+    author: "AskNova Team",
     content: "comprehensive"
   },
 
@@ -83,7 +87,7 @@ const originalContent = [
 
   {
     title: "Base64 Encoder/Decoder Utility",
-    url: "#tool/base64-converter", 
+    url: "#tool/base64-converter",
     description: "Encode and decode Base64 strings with our free online tool. Supports text, files, and URLs. Perfect for developers working with APIs, data transmission, and web development projects.",
     category: "tool",
     type: "utility",
@@ -96,7 +100,7 @@ const originalContent = [
     title: "Regular Expression Tester and Builder",
     url: "#tool/regex-tester",
     description: "Test, build, and debug regular expressions with our interactive regex tool. Features syntax highlighting, match explanation, common pattern library, and regex cheat sheet.",
-    category: "tool", 
+    category: "tool",
     type: "utility",
     rating: 4.7,
     date: "2025-01-13",
@@ -108,7 +112,7 @@ const originalContent = [
     url: "#tool/color-picker",
     description: "Professional color picker and palette generator for web designers and developers. Extract colors from images, generate harmonious palettes, and export in multiple formats (HEX, RGB, HSL).",
     category: "tool",
-    type: "utility", 
+    type: "utility",
     rating: 4.8,
     date: "2025-01-12",
     features: ["Pick", "Palette", "Extract", "Export"]
@@ -130,14 +134,14 @@ const originalContent = [
 
   {
     title: "Building Accessible Web Applications: A Developer's Guide",
-    url: "#blog/web-accessibility-guide", 
+    url: "#blog/web-accessibility-guide",
     description: "Learn how to create accessible web applications that work for everyone. Comprehensive guide covering WCAG guidelines, ARIA labels, keyboard navigation, screen reader compatibility, and testing strategies.",
     category: "blog",
     type: "article",
     rating: 4.8,
     date: "2025-01-12",
     readTime: "18 min",
-    author: "AskNova Editorial Team", 
+    author: "AskNova Editorial Team",
     tags: ["Accessibility", "WCAG", "ARIA", "Inclusive Design"]
   },
 
@@ -159,7 +163,7 @@ const originalContent = [
     title: "JavaScript Utility Functions Collection",
     url: "#code/javascript-utilities",
     description: "Curated collection of useful JavaScript utility functions for common programming tasks. Includes string manipulation, array operations, date formatting, and validation functions with examples.",
-    category: "code", 
+    category: "code",
     type: "snippet",
     rating: 4.9,
     date: "2025-01-14",
@@ -172,7 +176,7 @@ const originalContent = [
     url: "#code/css-animations",
     description: "Beautiful CSS animation and transition examples you can use in your projects. From subtle micro-interactions to complex keyframe animations, all with cross-browser compatibility.",
     category: "code",
-    type: "snippet", 
+    type: "snippet",
     rating: 4.8,
     date: "2025-01-11",
     language: "CSS",
@@ -186,7 +190,7 @@ const originalContent = [
     category: "code",
     type: "snippet",
     rating: 4.7,
-    date: "2025-01-09", 
+    date: "2025-01-09",
     language: "Python",
     scripts: 20
   },
@@ -208,7 +212,7 @@ const originalContent = [
     title: "Learning Path: Becoming a Full-Stack Developer",
     url: "#guide/fullstack-learning-path",
     description: "Step-by-step learning path to become a full-stack developer. Our structured curriculum covers frontend, backend, databases, DevOps, and soft skills with recommended resources and timelines.",
-    category: "guide", 
+    category: "guide",
     type: "resource",
     rating: 4.9,
     date: "2025-01-11",
@@ -222,7 +226,7 @@ const originalContent = [
     url: "#docs/restful-api-design",
     description: "Complete guide to RESTful API design following industry standards. Covers HTTP methods, status codes, authentication, versioning, error handling, and documentation best practices.",
     category: "documentation",
-    type: "reference", 
+    type: "reference",
     rating: 4.9,
     date: "2025-01-08",
     sections: ["Design", "Authentication", "Versioning", "Testing"]
@@ -235,7 +239,7 @@ const originalContent = [
     category: "documentation",
     type: "reference",
     rating: 4.8,
-    date: "2025-01-06", 
+    date: "2025-01-06",
     topics: ["Basics", "Branching", "Merging", "Collaboration", "Hooks"]
   }
 ];
@@ -285,7 +289,7 @@ function showAbout() {
 function showContact() {
   hideAllViews();
   document.getElementById('contact-view').style.display = 'block';
-  currentView = 'contact'; 
+  currentView = 'contact';
   updateActiveNav('contact');
 }
 
@@ -323,7 +327,7 @@ function updateActiveNav(activeItem) {
   // Update navigation active state
   const navLinks = document.querySelectorAll('.navbar-menu a');
   navLinks.forEach(link => link.classList.remove('active'));
-  
+
   // Add active class to current nav item
   const activeLink = document.querySelector(`[onclick="show${activeItem.charAt(0).toUpperCase() + activeItem.slice(1)}()"]`);
   if (activeLink) {
@@ -335,7 +339,7 @@ function updateActiveNav(activeItem) {
 function loadTutorialsList() {
   const tutorialsContainer = document.getElementById('tutorials-list');
   const tutorialContent = originalContent.filter(item => item.category === 'tutorial');
-  
+
   tutorialsContainer.innerHTML = tutorialContent.map(tutorial => `
     <article class="tutorial-card">
       <div class="tutorial-header">
@@ -364,18 +368,18 @@ function filterTutorials(category) {
   const buttons = document.querySelectorAll('.category-btn');
   buttons.forEach(btn => btn.classList.remove('active'));
   event.target.classList.add('active');
-  
+
   const tutorialsContainer = document.getElementById('tutorials-list');
   let filteredContent = originalContent.filter(item => item.category === 'tutorial');
-  
+
   if (category !== 'all') {
     // For demo purposes, we'll filter by tags or type
-    filteredContent = filteredContent.filter(item => 
+    filteredContent = filteredContent.filter(item =>
       item.title.toLowerCase().includes(category.toLowerCase()) ||
       item.description.toLowerCase().includes(category.toLowerCase())
     );
   }
-  
+
   tutorialsContainer.innerHTML = filteredContent.map(tutorial => `
     <article class="tutorial-card">
       <div class="tutorial-header">
@@ -405,11 +409,11 @@ function openTool(toolId) {
   // For demo purposes, show an alert. In production, these would open actual tools
   const toolNames = {
     'json-formatter': 'JSON Formatter & Validator',
-    'base64-encoder': 'Base64 Encoder/Decoder', 
+    'base64-encoder': 'Base64 Encoder/Decoder',
     'color-picker': 'Color Picker & Palette Generator',
     'regex-tester': 'Regular Expression Tester'
   };
-  
+
   alert(`Opening ${toolNames[toolId]}...\n\nThis would open our custom-built ${toolNames[toolId]} tool in a new interface. Each tool is designed and built by the AskNova team to provide maximum utility for developers.`);
 }
 
@@ -429,15 +433,15 @@ function showTutorial(tutorialId) {
 // Contact form handling
 function submitContact(event) {
   event.preventDefault();
-  
+
   const name = document.getElementById('contact-name').value;
   const email = document.getElementById('contact-email').value;
   const subject = document.getElementById('contact-subject').value;
   const message = document.getElementById('contact-message').value;
-  
+
   // This is a demonstration form - in a real application, this would submit to a backend API
   alert(`Thank you for your feedback, ${name}!\n\nThis is a demonstration project for educational purposes. Your feedback helps improve the learning experience.\n\nFeedback Type: ${subject}\nMessage preview: ${message.substring(0, 50)}...`);
-  
+
   // Reset form
   document.getElementById('contact-form').reset();
 }
@@ -445,26 +449,26 @@ function submitContact(event) {
 // Enhanced search functionality focusing on original content
 function performSearch(event) {
   event.preventDefault();
-  
+
   const searchTerm = document.getElementById('search_terms').value.trim();
   if (!searchTerm) return;
-  
+
   // Add to search history
   addToSearchHistory(searchTerm);
-  
+
   // Filter original content based on search term
-  const results = originalContent.filter(item => 
+  const results = originalContent.filter(item =>
     item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     item.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
     (item.tags && item.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase())))
   );
-  
+
   displaySearchResults(results, searchTerm);
 }
 
 function displaySearchResults(results, searchTerm) {
   const resultsContainer = document.getElementById('search-results');
-  
+
   if (results.length === 0) {
     resultsContainer.innerHTML = `
       <div class="no-results">
@@ -481,7 +485,7 @@ function displaySearchResults(results, searchTerm) {
     `;
     return;
   }
-  
+
   resultsContainer.innerHTML = `
     <div class="search-results-header">
       <h3>Found ${results.length} result${results.length !== 1 ? 's' : ''} for "${searchTerm}"</h3>
@@ -504,9 +508,9 @@ function displaySearchResults(results, searchTerm) {
           </div>
           <div class="result-actions">
             <button onclick="openContent('${result.url}')" class="primary-btn">
-              ${result.category === 'tutorial' ? 'Read Tutorial' : 
-                result.category === 'tool' ? 'Use Tool' :
-                result.category === 'blog' ? 'Read Article' : 'View Content'}
+              ${result.category === 'tutorial' ? 'Read Tutorial' :
+      result.category === 'tool' ? 'Use Tool' :
+        result.category === 'blog' ? 'Read Article' : 'View Content'}
             </button>
             <button onclick="toggleFavorite('${result.title}')" class="favorite-btn">
               ${favorites.includes(result.title) ? '★' : '☆'}
@@ -516,7 +520,7 @@ function displaySearchResults(results, searchTerm) {
       `).join('')}
     </div>
   `;
-  
+
   resultsContainer.scrollIntoView({ behavior: 'smooth' });
 }
 
@@ -541,7 +545,7 @@ function openContent(url) {
 function handleDocSearch(event) {
   if (event.key === 'Enter') {
     const query = event.target.value;
-    performSearch({ preventDefault: () => {} });
+    performSearch({ preventDefault: () => { } });
     document.getElementById('search_terms').value = query;
   }
 }
@@ -565,7 +569,7 @@ function toggleFavorite(title) {
     favorites.splice(index, 1);
   }
   localStorage.setItem('favorites', JSON.stringify(favorites));
-  
+
   // Update UI
   if (currentView === 'tutorials') {
     loadTutorialsList();
@@ -577,7 +581,7 @@ function toggleDarkMode() {
   document.body.classList.toggle('dark-mode');
   const isDarkMode = document.body.classList.contains('dark-mode');
   localStorage.setItem('darkMode', isDarkMode);
-  
+
   const icon = document.querySelector('.dark-mode-toggle i');
   icon.className = isDarkMode ? 'bi bi-sun' : 'bi bi-moon';
 }
@@ -586,38 +590,145 @@ function toggleDarkMode() {
 function updateSearchSuggestions() {
   const searchInput = document.getElementById('search_terms');
   const query = searchInput.value.toLowerCase();
-  
+
   if (query.length < 2) return;
-  
+
   const suggestions = originalContent
-    .filter(item => 
+    .filter(item =>
       item.title.toLowerCase().includes(query) ||
       item.description.toLowerCase().includes(query)
     )
     .slice(0, 5)
     .map(item => item.title);
-  
+
   // Display suggestions (implementation would depend on UI design)
   console.log('Suggestions:', suggestions);
 }
 
-// Initialize application
-document.addEventListener('DOMContentLoaded', function() {
+// Initialize application with performance monitoring
+document.addEventListener('DOMContentLoaded', function () {
+  // Performance monitoring
+  const startTime = performance.now();
+
   // Load saved preferences
   const savedDarkMode = localStorage.getItem('darkMode') === 'true';
   if (savedDarkMode) {
     document.body.classList.add('dark-mode');
-    document.querySelector('.dark-mode-toggle i').className = 'bi bi-sun';
+    const darkModeIcon = document.querySelector('.dark-mode-toggle i');
+    if (darkModeIcon) {
+      darkModeIcon.className = 'bi bi-sun';
+    }
   }
-  
-  // Initialize search input
+
+  // Initialize search input with debouncing
   const searchInput = document.getElementById('search_terms');
   if (searchInput) {
-    searchInput.addEventListener('input', updateSearchSuggestions);
+    let searchTimeout;
+    searchInput.addEventListener('input', function () {
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(() => {
+        updateSearchSuggestions();
+      }, 300);
+    });
+
+    // Focus on search input for better UX
+    searchInput.focus();
   }
-  
+
   // Initialize home view
   showHome();
-  
-  console.log('AskNova Developer Hub initialized with', originalContent.length, 'original content items');
+
+  // Performance logging
+  const loadTime = performance.now() - startTime;
+  console.log(`AskNova Developer Hub initialized in ${loadTime.toFixed(2)}ms with ${originalContent.length} content items`);
+
+  // SEO: Send page view event
+  trackPageView('home');
+
+  // Lazy load non-critical features
+  setTimeout(() => {
+    initializeNonCriticalFeatures();
+  }, 1000);
 });
+
+// Performance: Lazy load non-critical features
+function initializeNonCriticalFeatures() {
+  // Initialize service worker for PWA support
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').catch(err => {
+      console.log('Service worker registration failed:', err);
+    });
+  }
+
+  // Initialize intersection observer for lazy loading
+  if ('IntersectionObserver' in window) {
+    const lazyLoadObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const element = entry.target;
+          if (element.dataset.src) {
+            element.src = element.dataset.src;
+            element.removeAttribute('data-src');
+            lazyLoadObserver.unobserve(element);
+          }
+        }
+      });
+    });
+
+    // Observe all lazy load elements
+    document.querySelectorAll('[data-src]').forEach(el => {
+      lazyLoadObserver.observe(el);
+    });
+  }
+
+  isContentLoaded = true;
+}
+
+// SEO: Track page views for analytics
+function trackPageView(page) {
+  // This would integrate with your analytics service
+  const pageData = {
+    page: page,
+    timestamp: new Date().toISOString(),
+    userAgent: navigator.userAgent,
+    referrer: document.referrer,
+    url: window.location.href
+  };
+
+  // Store in localStorage for demo purposes
+  const analytics = JSON.parse(localStorage.getItem('pageAnalytics') || '[]');
+  analytics.push(pageData);
+
+  // Keep only last 100 entries
+  if (analytics.length > 100) {
+    analytics.splice(0, analytics.length - 100);
+  }
+
+  localStorage.setItem('pageAnalytics', JSON.stringify(analytics));
+}
+
+// Performance: Debounced search function
+function debouncedSearch(searchTerm, delay = 300) {
+  if (window.searchTimeout) {
+    clearTimeout(window.searchTimeout);
+  }
+
+  window.searchTimeout = setTimeout(() => {
+    performActualSearch(searchTerm);
+  }, delay);
+}
+
+// Enhanced error handling
+window.addEventListener('error', function (event) {
+  console.error('JavaScript Error:', event.error);
+  // Could send to error tracking service
+});
+
+// Performance: Report web vitals
+function reportWebVitals() {
+  // This would integrate with real monitoring service
+  if ('web-vitals' in window) {
+    // getCLS, getFID, getFCP, getLCP, getTTFB would be imported from web-vitals library
+    console.log('Web Vitals monitoring would be initialized here');
+  }
+}
